@@ -67,19 +67,20 @@ controller.getBalanceForm = (req, res) => {
 
 controller.getBalance = (req, res) => {
     const data = req.body;
-    let url = "http://localhost:8080/payment/banks/"+data.card_number+"/accounts";
+    let url = "http://localhost:8080/payment/cards/"+data.card_number+"/balance";
     let xhr = new XMLHttpRequest();
     xhr.open("GET", url);
     xhr.send();
     xhr.onload = function () {
         let response = JSON.parse(xhr.responseText);
         console.log(response);
+    
         if (xhr.status != 200) {
-            req.flash('message', 'El Banco no pudo ser creado');
-            res.redirect('/createBank');
+            req.flash('message', 'No se pudo obtener el balance de la tarjeta, verifique que el numero de la tarjeta este ingresado correctamente');
+            res.redirect('/getBalance');
         }else{
-            req.flash('success', 'Banco: '+response.data.name+' fue creado correctamente');
-            res.redirect('/createBank');
+            req.flash('success', 'El balance de la tarjeta es: '+response.data);
+            res.redirect('/getBalance');
         }
         
     };
