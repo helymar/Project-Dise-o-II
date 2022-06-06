@@ -9,7 +9,6 @@ router.get('/login', authController.login);
 //Signup password
 router.get('/signup', authController.signup);
 
-router.get('/form1', authController.form1);
 
 
 router.get('/createBank', authController.createBankForm);
@@ -20,6 +19,8 @@ router.post('/getBalance', authController.getBalance);
 
 router.get('/deleteBank', authController.deletebankForm);
 router.post('/deleteBank', authController.deletebank);
+router.get('/createCard', authController.createCardForm);
+router.post('/createCard', authController.createCard);
 
 
 
