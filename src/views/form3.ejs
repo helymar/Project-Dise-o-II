@@ -31,15 +31,24 @@
               <!--end::Link-->
             </div>
             <!--begin::Input group-->
-            <div class="fv-row mb-7">
-              <label class="form-label fw-bolder text-dark fs-6">Escriba el numero de la Tarjeta</label>
-              <input
-                class="form-control form-control-lg form-control-solid"
-                type="text"
-                placeholder=""
-                name="card_number"
-                autocomplete="off"
-              />
+            <div class="d-flex flex-column mb-7 fv-row">
+              <!--begin::Label-->
+              <label class="required form-label fw-bolder text-dark fs-6">Numero de la tarjeta</label>
+              <!--end::Label-->
+              <!--begin::Input wrapper-->
+              <div class="position-relative">
+                <!--begin::Input-->
+                <input type="text" class="form-control form-control-solid" placeholder="Escriba su numero de la tarjeta" name="card_number" value="" />
+                <!--end::Input-->
+                <!--begin::Card logos-->
+                <div class="position-absolute translate-middle-y top-50 end-0 me-5">
+                  <img src="/media/svg/card-logos/visa.svg" alt="" class="h-25px" />
+                  <img src="/media/svg/card-logos/mastercard.svg" alt="" class="h-25px" />
+                  <img src="/media/svg/card-logos/american-express.svg" alt="" class="h-25px" />
+                </div>
+                <!--end::Card logos-->
+              </div>
+              <!--end::Input wrapper-->
             </div>
             <div class="text-center">
               <button
