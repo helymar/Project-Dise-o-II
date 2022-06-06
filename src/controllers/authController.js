@@ -244,7 +244,20 @@ controller.createPayment = (req, res) => {
     xhr.setRequestHeader("Accept", "application/json");
     xhr.setRequestHeader("Content-Type", "application/json");
 
-    let data = req.body;
+    let data = {
+        bankId: parseInt(req.body.bankId),
+        cardId: parseInt(req.body.cardId),
+        creditLapses: parseInt(req.body.creditLapses),
+        description: req.body.description,
+        email: req.body.email,
+        franchise: req.body.franchise,
+        location:   req.body.location,
+        name: req.body.name,
+        ownerId: parseInt(req.body.ownerId),
+        total: parseInt(req.body.total),
+        type: req.body.type
+    };
+
     xhr.send(JSON.stringify(data));
     xhr.onload = function () {
         let response = JSON.parse(xhr.responseText);
@@ -253,8 +266,14 @@ controller.createPayment = (req, res) => {
             req.flash('message', 'No se pudo realizar el pago');
             res.redirect('/createPayment');
         }else{
-            req.flash('success', 'El pago se realizo satisfactoriamente');
-            res.redirect('/createPayment');
+            if (response.data.transactionStatus!="APPROVED") {
+                req.flash('message', 'Pago rechazado');
+                res.redirect('/createPayment');
+            } else {
+                req.flash('success', 'El pago se realizo satisfactoriamente');
+                res.redirect('/createPayment');
+            }
+            
         }
         
     };
