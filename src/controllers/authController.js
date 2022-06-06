@@ -279,5 +279,18 @@ controller.createPayment = (req, res) => {
     };
 };
 
-
+controller.getAllPayments = (req, res) => {
+    var url=baseurl+"/base/payments";
+    var req = http.request(url,resp=>{
+      resp.on('data', (chunk) => {
+        var allPayments = JSON.parse(chunk);
+        console.log(allPayments);
+        res.render('getAllPayments', {
+            allPayments: allPayments.data
+        });
+      });
+    });
+    req.end();
+    
+};
 module.exports = controller;

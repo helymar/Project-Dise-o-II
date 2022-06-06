@@ -30,6 +30,7 @@ router.post('/updateBank', authController.updateBank);
 router.get('/createPayment', authController.createPaymentForm);
 router.post('/createPayment', authController.createPayment);
 
+router.get('/getAllPayments', authController.getAllPayments);
 
 
 module.exports = router;
