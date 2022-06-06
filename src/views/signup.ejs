@@ -1,0 +1,47 @@
+
+  <% include partials/auth/_head %>
+
+  <% include partials/message %>
+
+  <!-- Main content -->
+  <div class="main-content" id="panel">
+    
+    <!-- Page content -->
+    <div class="container mx-auto">
+      <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-7">
+          <div class="card bg-secondary border-0 mb-0">
+            <div class="card-body px-lg-5 py-lg-5">
+              <div class="text-center text-muted mb-4">
+                <small>Crea la contraseña de tu usuario</small>
+              </div>
+              <form role="form" method="POST" action="/auth/signup">
+                <div class="form-group mb-3">
+                  <div class="input-group input-group-merge input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-single-02"></i></span>
+                    </div>
+                    <input class="form-control"  name="Username" type="text" value="100000000" readonly>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group input-group-merge input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                    </div>
+                    <input class="form-control" placeholder="Contraseña" name="Password" type="password">
+                  </div>
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary my-4">Crear contraseña</button>
+                </div>
+              </form>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      <!-- Footer -->
+      
+      <% include partials/auth/scripts %>
