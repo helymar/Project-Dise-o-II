@@ -1,6 +1,6 @@
 const http=require("http");
 var XMLHttpRequest = require('xhr2');
-
+const baseurl = require('../lib/varible.js');
 const controller = {};
 
 controller.login = (req, res) => {
@@ -8,7 +8,7 @@ controller.login = (req, res) => {
 };
 
 controller.signup = (req, res) => {
-    var url="http://localhost:8080/payment/banks";
+    var url=baseurl+"/payment/banks";
     var req = http.request(url,resp=>{
       resp.on('data', (chunk) => {
         var banks = JSON.parse(chunk);
@@ -26,7 +26,8 @@ controller.createBankForm = (req, res) => {
 
 controller.createBank = (req, res) => {
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://localhost:8080/payment/banks");
+    var url=baseurl+"/payment/banks";
+    xhr.open("POST", url);
 
     xhr.setRequestHeader("Accept", "application/json");
     xhr.setRequestHeader("Content-Type", "application/json");
@@ -54,7 +55,7 @@ controller.getBalanceForm = (req, res) => {
 
 controller.getBalance = (req, res) => {
     const data = req.body;
-    let url = "http://localhost:8080/payment/cards/"+data.card_number+"/balance";
+    var url=baseurl+"/payment/cards/"+data.card_number+"/balance";
     let xhr = new XMLHttpRequest();
     xhr.open("GET", url);
     xhr.send();
@@ -75,7 +76,7 @@ controller.getBalance = (req, res) => {
 };
 
 controller.deletebankForm = (req, res) => {
-    var url="http://localhost:8080/payment/banks";
+    var url=baseurl+"/payment/banks";
     var req = http.request(url,resp=>{
       resp.on('data', (chunk) => {
         var banks = JSON.parse(chunk);
@@ -88,8 +89,7 @@ controller.deletebankForm = (req, res) => {
     
 };
 controller.createCardForm = (req, res) => {
-
-    var url="http://localhost:8080/payment/banks";
+    var url=baseurl+"/payment/banks";
     var req = http.request(url,resp=>{
       resp.on('data', (chunk) => {
         var banks = JSON.parse(chunk);
@@ -102,8 +102,10 @@ controller.createCardForm = (req, res) => {
 };
 
 controller.createCard = (req, res) => {
+    var url=baseurl+"/payment/cards";
+
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "http://localhost:8080/payment/cards");
+    xhr.open("POST", url);
 
     xhr.setRequestHeader("Accept", "application/json");
     xhr.setRequestHeader("Content-Type", "application/json");
@@ -129,7 +131,7 @@ controller.createCard = (req, res) => {
 
 controller.deletebank = (req, res) => {
     const data = req.body;
-    let url = "http://localhost:8080/payment/banks/"+data.bankId;
+    var url=baseurl+"/payment/banks/"+data.bankId;
     let xhr = new XMLHttpRequest();
     xhr.open("DELETE", url);
     xhr.send();
