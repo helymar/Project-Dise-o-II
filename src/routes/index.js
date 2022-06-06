@@ -9,7 +9,7 @@ router.get('/login', authController.login);
 //Signup password
 router.get('/signup', authController.signup);
 
-
+router.get('/', authController.landing)
 
 router.get('/createBank', authController.createBankForm);
 router.post('/createBank', authController.createBank);

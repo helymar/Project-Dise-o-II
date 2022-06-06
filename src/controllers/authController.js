@@ -3,6 +3,12 @@ var XMLHttpRequest = require('xhr2');
 const baseurl = require('../lib/varible.js');
 const controller = {};
 
+controller.landing = (req, res) => {
+    res.render('landing',);
+};
+
+
+
 controller.login = (req, res) => {
     res.render('login',);
 };
