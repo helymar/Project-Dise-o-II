@@ -1,5 +1,5 @@
 const http=require("http");
-
+var XMLHttpRequest = require('xhr2');
 
 const controller = {};
 
@@ -33,8 +33,32 @@ controller.form1 = (req, res) => {
     req.end();
 };
 
-controller.form2 = (req, res) => {
+controller.createBankForm = (req, res) => {
     res.render('form2');
+};
+
+controller.createBank = (req, res) => {
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "http://localhost:8080/payment/banks");
+
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("Content-Type", "application/json");
+
+    let data = req.body;
+    xhr.send(JSON.stringify(data));
+    xhr.onload = function () {
+        let response = JSON.parse(xhr.responseText);
+        console.log(response);
+        if (xhr.status != 201) {
+            req.flash('message', 'El Banco no pudo ser creado');
+            res.redirect('/createBank');
+        }else{
+            req.flash('success', 'Banco: '+response.data.name+' fue creado correctamente');
+            res.redirect('/createBank');
+        }
+        
+    };
+    
 };
 
 controller.form3 = (req, res) => {

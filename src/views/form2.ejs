@@ -1,6 +1,9 @@
 
 <% include partials/header %>
+
 <body id="kt_body" class="bg-body">
+  <%- include('partials/message') %>
+
   <!--begin::Main-->
   <!--begin::Root-->
   <div class="d-flex flex-column flex-root">
@@ -21,7 +24,7 @@
         <!--begin::Wrapper-->
         <div class="w-lg-600px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
           <!--begin::Form-->
-          <form class="form w-100" novalidate="novalidate" id="kt_sign_up_form">
+          <form action="/createBank" method="post" class="form w-100" novalidate="novalidate" id="kt_sign_up_form">
             <!--begin::Heading-->
             <div class="mb-10 text-center">
               <!--begin::Title-->
@@ -43,8 +46,7 @@
             </div>
             <div class="text-center">
               <button
-                type="button"
-                id="kt_sign_up_submit"
+                type="submit"
                 class="btn btn-lg btn-primary"
               >
                 <span class="indicator-label">Submit</span>

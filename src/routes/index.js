@@ -1,10 +1,23 @@
 const {Router} = require('express');
 const router = Router();
 
-const dashboardController = require('../controllers/dashboardController');
+const authController = require('../controllers/authController');
 
-router.get('/', dashboardController.dashboard);
+//Login
+router.get('/login', authController.login);
 
-router.get('/dashboard', dashboardController.dashboard);
+//Signup password
+router.get('/signup', authController.signup);
+
+router.get('/form1', authController.form1);
+
+
+router.get('/createBank', authController.createBankForm);
+router.post('/createBank', authController.createBank);
+
+router.get('/form3', authController.form3);
+
+
+
 
 module.exports = router;

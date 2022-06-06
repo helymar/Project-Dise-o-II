@@ -1,0 +1,44 @@
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<% if(success!=''){ %>
+    <script>
+        let timerInterval
+        Swal.fire({
+          icon: 'success',
+          title: '<%= success %>',
+          timer: 2000,
+          timerProgressBar: true,
+          didOpen: () => {
+            Swal.showLoading()
+            timerInterval = setInterval(() => {
+            }, 100)
+          },
+          willClose: () => {
+            clearInterval(timerInterval)
+          }
+        }).then((result) => {
+          /* Read more about handling dismissals below */
+        })
+        </script>
+<% } %> 
+<% if(message!='') { %> 
+<script>
+let timerInterval
+Swal.fire({
+  icon: 'error',
+  title: '<%= message %>',
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: () => {
+    Swal.showLoading()
+    timerInterval = setInterval(() => {
+    }, 100)
+  },
+  willClose: () => {
+    clearInterval(timerInterval)
+  }
+}).then((result) => {
+  /* Read more about handling dismissals below */
+  
+})
+</script>
+<% } %> 
