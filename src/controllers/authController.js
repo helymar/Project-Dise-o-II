@@ -220,4 +220,45 @@ controller.updateBank = (req, res) => {
     
 };
 
+controller.createPaymentForm = (req, res) => {
+    var url=baseurl+"/payment/banks";
+    var req = http.request(url,resp=>{
+      resp.on('data', (chunk) => {
+        var banks = JSON.parse(chunk);
+        res.render('createPayment', {
+            banks: banks.data
+        });
+      });
+    });
+    req.end();
+    
+};
+
+
+controller.createPayment = (req, res) => {
+    var url=baseurl+"/base/payments";
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url);
+
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("Content-Type", "application/json");
+
+    let data = req.body;
+    xhr.send(JSON.stringify(data));
+    xhr.onload = function () {
+        let response = JSON.parse(xhr.responseText);
+        console.log(response);
+        if (xhr.status != 201) {
+            req.flash('message', 'No se pudo realizar el pago');
+            res.redirect('/createPayment');
+        }else{
+            req.flash('success', 'El pago se realizo satisfactoriamente');
+            res.redirect('/createPayment');
+        }
+        
+    };
+};
+
+
 module.exports = controller;

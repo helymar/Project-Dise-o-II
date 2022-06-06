@@ -27,6 +27,9 @@ router.post('/createCard', authController.createCard);
 router.get('/updateBank', authController.updateBankForm);
 router.post('/updateBank', authController.updateBank);
 
+router.get('/createPayment', authController.createPaymentForm);
+router.post('/createPayment', authController.createPayment);
+
 
 
 module.exports = router;
