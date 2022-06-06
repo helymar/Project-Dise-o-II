@@ -19,8 +19,13 @@ router.post('/getBalance', authController.getBalance);
 
 router.get('/deleteBank', authController.deletebankForm);
 router.post('/deleteBank', authController.deletebank);
+
 router.get('/createCard', authController.createCardForm);
 router.post('/createCard', authController.createCard);
+
+
+router.get('/updateBank', authController.updateBankForm);
+router.patch('/updateBank', authController.updateBank);
 
 
 

@@ -127,7 +127,19 @@ controller.createCard = (req, res) => {
     
 };
 
-  module.exports = controller;
+controller.deletebankForm = (req, res) => {
+    var url="http://localhost:8080/payment/banks";
+    var req = http.request(url,resp=>{
+      resp.on('data', (chunk) => {
+        var banks = JSON.parse(chunk);
+        res.render('DelebankForm', {
+            banks: banks.data
+        });
+      });
+    });
+    req.end();
+    
+};
 
 controller.deletebank = (req, res) => {
     const data = req.body;
@@ -150,4 +162,62 @@ controller.deletebank = (req, res) => {
     };
     
 };
+
+controller.updateBankForm = (req, res) => {
+
+    var url="http://localhost:8080/payment/banks";
+    var req = http.request(url,resp=>{
+      resp.on('data', (chunk) => {
+        var banks = JSON.parse(chunk);
+        res.render('updateBank', {
+            banks: banks.data
+        });
+      });
+    });
+    req.end();
+};
+
+
+function toBoolean(val){
+    var toReturn = false;
+
+    if(val == 'true' || val =='True'){
+        toReturn = true;
+    }
+
+    return toReturn;
+}
+
+
+controller.updateBank = (req, res) => {
+    const data = req.body;
+    let xhr = new XMLHttpRequest();
+    let url = "http://localhost:8080/payment/banks/"+data.bankId;
+
+    xhr.open("PATCH", url);
+
+    xhr.setRequestHeader("Accept", "application/json");
+    xhr.setRequestHeader("Content-Type", "application/json");
+
+    let dataInsert = {
+        name: data.name,
+        isBalanceServiceActive: toBoolean(data.isBalanceServiceActive),
+        isPaymentServiceActive: toBoolean(data.isPaymentServiceActive)
+    };
+    xhr.send(JSON.stringify(dataInsert));
+    xhr.onload = function () {
+        let response = JSON.parse(xhr.responseText);
+        console.log(response);
+        if (xhr.status != 201) {
+            req.flash('message', 'No se pudo actualizar el banco');
+            res.redirect('/updateBank');
+        }else{
+            req.flash('success', 'el banco ha sido actualizado exitosamente');
+            res.redirect('/updateBank');
+        }
+        
+    };
+    
+};
+
 module.exports = controller;
