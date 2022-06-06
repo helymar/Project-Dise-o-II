@@ -61,9 +61,29 @@ controller.createBank = (req, res) => {
     
 };
 
-controller.form3 = (req, res) => {
+controller.getBalanceForm = (req, res) => {
     res.render('form3');
 };
 
+controller.getBalance = (req, res) => {
+    const data = req.body;
+    let url = "http://localhost:8080/payment/banks/"+data.card_number+"/accounts";
+    let xhr = new XMLHttpRequest();
+    xhr.open("GET", url);
+    xhr.send();
+    xhr.onload = function () {
+        let response = JSON.parse(xhr.responseText);
+        console.log(response);
+        if (xhr.status != 200) {
+            req.flash('message', 'El Banco no pudo ser creado');
+            res.redirect('/createBank');
+        }else{
+            req.flash('success', 'Banco: '+response.data.name+' fue creado correctamente');
+            res.redirect('/createBank');
+        }
+        
+    };
+    
+};
 
   module.exports = controller;

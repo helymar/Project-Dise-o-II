@@ -15,7 +15,8 @@ router.get('/form1', authController.form1);
 router.get('/createBank', authController.createBankForm);
 router.post('/createBank', authController.createBank);
 
-router.get('/form3', authController.form3);
+router.get('/getBalance', authController.getBalanceForm);
+router.post('/getBalance', authController.getBalance);
 
 
 
