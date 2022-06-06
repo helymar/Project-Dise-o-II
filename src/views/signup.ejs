@@ -7,6 +7,9 @@
   <!--begin::Fonts-->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
   <!--end::Fonts-->
+  <!--begin::Page Vendor Stylesheets(used by this page)-->
+  <link href="assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+  <!--end::Page Vendor Stylesheets-->
   <!--begin::Global Stylesheets Bundle(used by all pages)-->
   <link href="/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
   <link href="/css/style.bundle.css" rel="stylesheet" type="text/css" />
@@ -53,55 +56,18 @@
               <!--end::Link-->
             </div>
             <!--end::Heading-->
-            <!--begin::Action-->
-            <button
-              type="button"
-              class="btn btn-light-primary fw-bolder w-100 mb-10"
-            >
-              <img
-                alt="Logo"
-                src="/media/svg/brand-logos/google-icon.svg"
-                class="h-20px me-3"
-              />Sign in with Google
-            </button>
-            <!--end::Action-->
-            <!--begin::Separator-->
-            <div class="d-flex align-items-center mb-10">
-              <div class="border-bottom border-gray-300 mw-50 w-100"></div>
-              <span class="fw-bold text-gray-400 fs-7 mx-2">OR</span>
-              <div class="border-bottom border-gray-300 mw-50 w-100"></div>
-            </div>
-            <!--end::Separator-->
             <!--begin::Input group-->
-            <div class="row fv-row mb-7">
-              <!--begin::Col-->
-              <div class="col-xl-6">
-                <label class="form-label fw-bolder text-dark fs-6"
-                  >First Name</label
-                >
-                <input
-                  class="form-control form-control-lg form-control-solid"
-                  type="text"
-                  placeholder=""
-                  name="first-name"
-                  autocomplete="off"
-                />
-              </div>
-              <!--end::Col-->
-              <!--begin::Col-->
-              <div class="col-xl-6">
-                <label class="form-label fw-bolder text-dark fs-6"
-                  >Last Name</label
-                >
-                <input
-                  class="form-control form-control-lg form-control-solid"
-                  type="text"
-                  placeholder=""
-                  name="last-name"
-                  autocomplete="off"
-                />
-              </div>
-              <!--end::Col-->
+            <div class="fv-row mb-7">
+              <label class="form-label fw-bolder text-dark fs-6"
+                >Name</label
+              >
+              <input
+                class="form-control form-control-lg form-control-solid"
+                type="text"
+                placeholder=""
+                name="first-name"
+                autocomplete="off"
+              />
             </div>
             <!--end::Input group-->
             <!--begin::Input group-->
@@ -122,68 +88,73 @@
               <div class="mb-1">
                 <!--begin::Label-->
                 <label class="form-label fw-bolder text-dark fs-6"
-                  >Password</label
+                  >description</label
                 >
                 <!--end::Label-->
                 <!--begin::Input wrapper-->
                 <div class="position-relative mb-3">
                   <input
                     class="form-control form-control-lg form-control-solid"
-                    type="password"
+                    type="text"
                     placeholder=""
-                    name="password"
+                    name="description"
                     autocomplete="off"
                   />
-                  <span
-                    class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2"
-                    data-kt-password-meter-control="visibility"
-                  >
-                    <i class="bi bi-eye-slash fs-2"></i>
-                    <i class="bi bi-eye fs-2 d-none"></i>
-                  </span>
+                  
                 </div>
                 <!--end::Input wrapper-->
-                <!--begin::Meter-->
-                <div
-                  class="d-flex align-items-center mb-3"
-                  data-kt-password-meter-control="highlight"
-                >
-                  <div
-                    class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"
-                  ></div>
-                  <div
-                    class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"
-                  ></div>
-                  <div
-                    class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"
-                  ></div>
-                  <div
-                    class="flex-grow-1 bg-secondary bg-active-success rounded h-5px"
-                  ></div>
-                </div>
-                <!--end::Meter-->
               </div>
-              <!--end::Wrapper-->
-              <!--begin::Hint-->
-              <div class="text-muted">
-                Use 8 or more characters with a mix of letters, numbers &amp;
-                symbols.
-              </div>
-              <!--end::Hint-->
+              <!--end::Wrapper--> 
             </div>
             <!--end::Input group=-->
             <!--begin::Input group-->
             <div class="fv-row mb-5">
               <label class="form-label fw-bolder text-dark fs-6"
-                >Confirm Password</label
+                >franchise</label
               >
-              <input
-                class="form-control form-control-lg form-control-solid"
-                type="password"
-                placeholder=""
-                name="confirm-password"
-                autocomplete="off"
-              />
+              <select name="franchise" id="franchise" class="form-select form-select-solid">
+                <option value="VISA">VISA</option>
+                <option value="MASTERCARD">MASTERCARD</option>
+                <option value="AMERICAN EXPRESS">AMERICAN EXPRESS</option>
+              </select>
+              
+            </div>
+            <div class="fv-row mb-5">
+              <label class="form-label fw-bolder text-dark fs-6"
+                >credit Lapses</label
+              >
+              <select name="creditLapses" id="creditLapses" class="form-select form-select-solid">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+            </div>
+            <div class="fv-row mb-5">
+              <label class="form-label fw-bolder text-dark fs-6"
+                >Bank</label
+              >
+              <select name="Bank" id="Bank" class="form-select form-select-solid">
+                <option value="1">WesternBank</option>
+                <option value="2">EstnBank</option>
+              </select>
+            </div>
+            <div class="fv-row mb-5">
+              <label class="form-label fw-bolder text-dark fs-6"
+                >Type card</label
+              >
+              <select name="Bank" id="Bank" class="form-select form-select-solid">
+                <option value="CREDIT">CREDIT</option>
+                <option value="DEBIT">DEBIT</option>
+              </select>
             </div>
             <!--end::Input group-->
             <!--begin::Input group-->
@@ -267,6 +238,17 @@
   <!--begin::Page Custom Javascript(used by this page)-->
   <script src="/js/custom/authentication/sign-up/general.js"></script>
   <!--end::Page Custom Javascript-->
+  <!--begin::Page Vendors Javascript(used by this page)-->
+  <script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
+  <!--end::Page Vendors Javascript-->
+  <!--begin::Page Custom Javascript(used by this page)-->
+  <script src="assets/js/widgets.bundle.js"></script>
+  <script src="assets/js/custom/widgets.js"></script>
+  <script src="assets/js/custom/apps/chat/chat.js"></script>
+  <script src="assets/js/custom/utilities/modals/upgrade-plan.js"></script>
+  <script src="assets/js/custom/utilities/modals/create-app.js"></script>
+  <script src="assets/js/custom/utilities/modals/new-target.js"></script>
+  <script src="assets/js/custom/utilities/modals/users-search.js"></script>
   <!--end::Javascript-->
 </body>
 <!-- Footer -->
