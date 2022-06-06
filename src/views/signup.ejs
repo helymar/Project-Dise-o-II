@@ -126,8 +126,11 @@
                 >Bank</label
               >
               <select name="Bank" id="Bank" class="form-select form-select-solid">
-                <option value="1">WesternBank</option>
-                <option value="2">EstnBank</option>
+                <% if(banks){  %>
+                  <% for(var i=0; i < banks.length; i++) { %>
+                    <option value="<%= banks[i].id %>"><%= banks[i].name %></option>
+                    <% } %>
+                <% } %>
               </select>
             </div>
             <div class="fv-row mb-5">

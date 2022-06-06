@@ -46,8 +46,11 @@
                 >Seleccione el Banco</label
               >
               <select name="bankId" id="bankId" class="form-select form-select-solid">
-                <option value="1">WesternBank</option>
-                <option value="2">EstnBank</option>
+                  <% if(banks){  %>
+                    <% for(var i=0; i < banks.length; i++) { %>
+                      <option value="<%= banks[i].id %>"><%= banks[i].name %></option>
+                      <% } %>
+                  <% } %>
               </select>
               
             </div>

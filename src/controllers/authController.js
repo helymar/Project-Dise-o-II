@@ -1,3 +1,6 @@
+const http=require("http");
+
+
 const controller = {};
 
 controller.login = (req, res) => {
@@ -5,11 +8,29 @@ controller.login = (req, res) => {
 };
 
 controller.signup = (req, res) => {
-    res.render('signup');
+    var url="http://localhost:8080/payment/banks";
+    var req = http.request(url,resp=>{
+      resp.on('data', (chunk) => {
+        var banks = JSON.parse(chunk);
+        res.render('signup', {
+            banks: banks.data
+        });
+      });
+    });
+    req.end();
 };
 
 controller.form1 = (req, res) => {
-    res.render('form1');
+    var url="http://localhost:8080/payment/banks";
+    var req = http.request(url,resp=>{
+      resp.on('data', (chunk) => {
+        var banks = JSON.parse(chunk);
+        res.render('form1', {
+            banks: banks.data
+        });
+      });
+    });
+    req.end();
 };
 
 controller.form2 = (req, res) => {
