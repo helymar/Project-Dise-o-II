@@ -87,4 +87,39 @@ controller.getBalance = (req, res) => {
     
 };
 
-  module.exports = controller;
+controller.deletebankForm = (req, res) => {
+    var url="http://localhost:8080/payment/banks";
+    var req = http.request(url,resp=>{
+      resp.on('data', (chunk) => {
+        var banks = JSON.parse(chunk);
+        res.render('DelebankForm', {
+            banks: banks.data
+        });
+      });
+    });
+    req.end();
+    
+};
+
+controller.deletebank = (req, res) => {
+    const data = req.body;
+    let url = "http://localhost:8080/payment/banks/"+data.bankId;
+    let xhr = new XMLHttpRequest();
+    xhr.open("DELETE", url);
+    xhr.send();
+    xhr.onload = function () {
+        let response = JSON.parse(xhr.responseText);
+        console.log(response);
+    
+        if (xhr.status != 200) {
+            req.flash('message', 'No se pudo eliminar el banco');
+            res.redirect('/deleteBank');
+        }else{
+            req.flash('success', 'El banco: '+response.data.name+' fue eliminado correctamente');
+            res.redirect('/deleteBank');
+        }
+        
+    };
+    
+};
+module.exports = controller;

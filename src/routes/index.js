@@ -18,6 +18,8 @@ router.post('/createBank', authController.createBank);
 router.get('/getBalance', authController.getBalanceForm);
 router.post('/getBalance', authController.getBalance);
 
+router.get('/deleteBank', authController.deletebankForm);
+router.post('/deleteBank', authController.deletebank);
 
 
 
