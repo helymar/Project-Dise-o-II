@@ -293,4 +293,20 @@ controller.getAllPayments = (req, res) => {
     req.end();
     
 };
+
+controller.getAllTransactions = (req, res) => {
+    var url=baseurl+"/payment/transactions";
+    var req = http.request(url,resp=>{
+      resp.on('data', (chunk) => {
+        var allTransactions = JSON.parse(chunk);
+        console.log(allTransactions);
+        res.render('getAllTransactions', {
+            allTransactions: allTransactions.data
+        });
+      });
+    });
+    req.end();
+    
+};
+
 module.exports = controller;

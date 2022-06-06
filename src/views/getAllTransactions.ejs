@@ -26,7 +26,7 @@
             <div class="card-header pt-7">
               <!--begin::Title-->
               <h3 class="card-title align-items-start flex-column">
-                <span class="card-label fw-bolder text-gray-800">All payments</span>
+                <span class="card-label fw-bolder text-gray-800">All Transactions</span>
                 <span class="text-gray-400 mt-1 fw-bold fs-6"></span>
               </h3>
               <!--end::Title-->
@@ -46,10 +46,9 @@
                   <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                     <th class="min-w-100px">Order ID</th>
                     <th class="text-end min-w-100px">Created</th>
-                    <th class="text-end min-w-125px">Customer</th>
-                    <th class="text-end min-w-125px">franchise</th>
-                    <th class="text-end min-w-100px">location</th>
+                    <th class="text-end min-w-100px">Credit Lapses</th>
                     <th class="text-end min-w-100px">Total</th>
+                    <th class="text-end min-w-100px">Reason</th>
                     <th class="text-end min-w-50px">Status</th>
                   </tr>
                   <!--end::Table row-->
@@ -57,27 +56,26 @@
                 <!--end::Table head-->
                 <!--begin::Table body-->
                 <tbody class="fw-bolder text-gray-600">
-                  <% for (let i = 0; i < allPayments.length; i++) { %>
+                  <% for (let i = 0; i < allTransactions.length; i++) { %>
                   <tr>
                     <td>
-                      <span class="text-gray-800 text-hover-primary"><%= allPayments[i].id %></span>
+                      <span class="text-gray-800 text-hover-primary"><%= allTransactions[i].id %></span>
                     </td>
-                    <td class="text-end"><%= allPayments[i].createDate %></td>
+                    <td class="text-end"><%= allTransactions[i].createDate %></td>
                     <td class="text-end">
-                      <a href="#" class="text-gray-600 text-hover-primary"><%= allPayments[i].name %></a>
-                    </td>
-                    <td class="text-end">
-                      <a href="#" class="text-gray-600 text-hover-primary"><%= allPayments[i].franchise %></a>
-                    </td>
-                    <td class="text-end"><%= allPayments[i].location %></td>
-                    <td class="text-end">
-                      <span class="text-gray-800 fw-boldest">$<%= allPayments[i].total %></span>
+                      <span class="text-gray-800 fw-boldest"><%= allTransactions[i].creditLapses %></span>
                     </td>
                     <td class="text-end">
-                      <% if(allPayments[i].transactionStatus=='PENDING' ){ %>
+                      <span class="text-gray-800 fw-boldest">$<%= allTransactions[i].total %></span>
+                    </td>
+                    <td class="text-end">
+                      <span class="text-gray-800 fw-boldest"><%= allTransactions[i].reason %></span>
+                    </td>
+                    <td class="text-end">
+                      <% if(allTransactions[i].status=='PENDING' ){ %>
                         <span class="badge py-3 px-4 fs-7 badge-light-warning">PENDING</span>
                       <% }else{ %>
-                        <% if(allPayments[i].transactionStatus=='REJECTED' ){ %>
+                        <% if(allTransactions[i].status=='REJECTED' ){ %>
                           <span class="badge py-3 px-4 fs-7 badge-light-danger">REJECTED</span>
                           <% }else{ %>
                             <span class="badge py-3 px-4 fs-7 badge-light-success">APPROVED</span>

@@ -32,5 +32,7 @@ router.post('/createPayment', authController.createPayment);
 
 router.get('/getAllPayments', authController.getAllPayments);
 
+router.get('/getAllTransactions', authController.getAllTransactions);
+
 
 module.exports = router;
