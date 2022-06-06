@@ -128,7 +128,7 @@ controller.createCard = (req, res) => {
 };
 
 controller.deletebankForm = (req, res) => {
-    var url="http://localhost:8080/payment/banks";
+    var url=baseurl+"/payment/banks";
     var req = http.request(url,resp=>{
       resp.on('data', (chunk) => {
         var banks = JSON.parse(chunk);
@@ -165,7 +165,7 @@ controller.deletebank = (req, res) => {
 
 controller.updateBankForm = (req, res) => {
 
-    var url="http://localhost:8080/payment/banks";
+    var url=baseurl+"/payment/banks";
     var req = http.request(url,resp=>{
       resp.on('data', (chunk) => {
         var banks = JSON.parse(chunk);
@@ -192,7 +192,7 @@ function toBoolean(val){
 controller.updateBank = (req, res) => {
     const data = req.body;
     let xhr = new XMLHttpRequest();
-    let url = "http://localhost:8080/payment/banks/"+data.bankId;
+    let url = baseurl+"/payment/banks/"+data.bankId;
 
     xhr.open("PATCH", url);
 
@@ -208,7 +208,7 @@ controller.updateBank = (req, res) => {
     xhr.onload = function () {
         let response = JSON.parse(xhr.responseText);
         console.log(response);
-        if (xhr.status != 201) {
+        if (xhr.status != 200) {
             req.flash('message', 'No se pudo actualizar el banco');
             res.redirect('/updateBank');
         }else{

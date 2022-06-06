@@ -25,7 +25,7 @@ router.post('/createCard', authController.createCard);
 
 
 router.get('/updateBank', authController.updateBankForm);
-router.patch('/updateBank', authController.updateBank);
+router.post('/updateBank', authController.updateBank);
 
 
 
